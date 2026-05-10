@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#198754">
+  <title>Mercadinho do Bairro</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container py-4">
+    <header class="d-flex justify-content-between align-items-center pb-3 mb-4 border-bottom">
+      <h1 class="h2">🛒 Mercadinho do Bairro</h1>
+      <span class="badge bg-success" id="onlineStatus">Online</span>
+    </header>
+
+    <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+      <li class="nav-item"><button class="nav-link active" id="vitrine-tab" data-bs-toggle="tab" data-bs-target="#vitrine" type="button">🏪 Vitrine / Preços</button></li>
+      <li class="nav-item"><button class="nav-link" id="pdv-tab" data-bs-toggle="tab" data-bs-target="#pdv" type="button">🛍️ PDV (Vendas)</button></li>
+      <li class="nav-item"><button class="nav-link" id="produtos-tab" data-bs-toggle="tab" data-bs-target="#produtos" type="button">📦 Gerenciar Produtos</button></li>
+      <li class="nav-item"><button class="nav-link" id="historico-tab" data-bs-toggle="tab" data-bs-target="#historico" type="button">📜 Histórico / Notas</button></li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Vitrine -->
+      <div class="tab-pane fade show active" id="vitrine" role="tabpanel">
+        <div class="row" id="listaProdutosVitrine"><div class="col-12 text-center">Carregando produtos...</div></div>
+      </div>
+
+      <!-- PDV -->
+      <div class="tab-pane fade" id="pdv" role="tabpanel">
+        <div class="row">
+          <div class="col-md-5"><div class="card mb-3"><div class="card-header bg-primary text-white">Produtos</div><div class="card-body" id="listaProdutosPDV" style="max-height:400px; overflow-y:auto;"></div></div></div>
+          <div class="col-md-7"><div class="card"><div class="card-header bg-success text-white">Carrinho</div><div class="card-body"><div id="carrinhoItens"></div><hr><h4>Total: R$ <span id="totalCarrinho">0.00</span></h4><button class="btn btn-danger mt-2" id="finalizarVendaBtn">✅ Finalizar Venda</button></div></div></div>
+        </div>
+      </div>
+
+      <!-- Gerenciar Produtos -->
+      <div class="tab-pane fade" id="produtos" role="tabpanel">
+        <div class="card"><div class="card-header"><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalProduto">➕ Novo Produto</button></div><div class="card-body"><table class="table table-striped" id="tabelaProdutos"><thead><tr><th>ID</th><th>Nome</th><th>Preço</th><th>Estoque</th><th>Código</th><th>Ações</th></tr></thead><tbody></tbody></table></div></div>
+      </div>
+
+      <!-- Histórico -->
+      <div class="tab-pane fade" id="historico" role="tabpanel">
+        <div class="card"><div class="card-header">Vendas realizadas</div><div class="card-body"><table class="table" id="tabelaVendas"><thead><tr><th>NF</th><th>Data</th><th>Total</th><th>Ações</th></tr></thead><tbody></tbody></table></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Produto -->
+  <div class="modal fade" id="modalProduto" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Produto</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><input type="hidden" id="produtoId"><div class="mb-2"><label>Nome</label><input type="text" id="produtoNome" class="form-control" required></div><div class="mb-2"><label>Preço (R$)</label><input type="number" step="0.01" id="produtoPreco" class="form-control" required></div><div class="mb-2"><label>Estoque</label><input type="number" id="produtoEstoque" class="form-control" required></div><div class="mb-2"><label>Código de barras</label><input type="text" id="produtoCodigo" class="form-control"></div></div><div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary" id="salvarProdutoBtn">Salvar</button></div></div></div></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

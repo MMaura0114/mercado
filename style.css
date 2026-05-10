@@ -1,0 +1,6 @@
+body { background-color: #f8f9fa; }
+.card { box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); transition: transform 0.2s; }
+.card:hover { transform: translateY(-2px); }
+.nav-tabs .nav-link { font-weight: 500; }
+#listaProdutosPDV button { min-width: 40px; }
+@media print { .no-print { display: none; } .container { width: 100%; margin: 0; } }
